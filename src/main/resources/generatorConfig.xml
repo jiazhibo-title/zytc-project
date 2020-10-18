@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="MySql">
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/zytcdb?serverTimezone=UTC"
+                userId="local"
+                password="zytc123"/>
+        <!-- 生成POJO对象，并将类放到com.zytc.demo.entity包下 -->
+        <javaModelGenerator targetPackage="com.zytc.demo.entity" targetProject="src/main/java"></javaModelGenerator>
+        <!-- 生成mapper xml文件，并放到resources下的mapper文件夹下 -->
+        <sqlMapGenerator targetPackage="com.zytc.demo.mapper"  targetProject="src/main/resources"></sqlMapGenerator>
+        <!-- 生成mapper xml对应dao接口，放到com.songguoliang.springboot.mapper包下-->
+        <javaClientGenerator targetPackage="com.zytc.demo.mapper" targetProject="src/main/java" type="XMLMAPPER"></javaClientGenerator>
+        <table tableName="zytc_role">
+            <!-- 是否只生成POJO对象 -->
+            <property name="modelOnly" value="false"/>
+            <!-- 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 -->
+            <domainObjectRenamingRule searchString="^Zytc" replaceString=""/>
+        </table>
+        <table tableName="zytc_user_role">
+            <!-- 是否只生成POJO对象 -->
+            <property name="modelOnly" value="false"/>
+            <!-- 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 -->
+            <domainObjectRenamingRule searchString="^Zytc" replaceString=""/>
+        </table>
+    </context>
+</generatorConfiguration>

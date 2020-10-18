@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zytc.demo.mapper.CaseMapper">
+
+    <sql id="case_Column_List">
+        id AS id,
+        source_company AS sourceCompany,
+        consumer_name AS consumerName,
+        insurance_type AS insuranceType,
+        insurance_content AS insuranceContent,
+        province AS province,
+        city AS city,
+        area AS area,
+        receive_time AS receiveTime,
+        receive_company AS receiveCompany,
+        allot_time AS allotTime,
+        allot_employee AS allotEmployee,
+        max_time AS maxTime,
+        case_status AS caseStatus,
+        case_type AS caseType,
+        back_time AS backTime,
+        back_count AS backCount,
+        back_data AS backData
+    </sql>
+
+    <insert id="addCase" parameterType="com.zytc.demo.entity.Case">
+        INSERT
+        INTO
+            zytc_case(
+            id,
+            source_company,
+            consumer_name,
+            insurance_type,
+            insurance_content,
+            province,
+            city,
+            area,
+            receive_time,
+            receive_company,
+            allot_time,
+            allot_employee,
+            max_time,
+            case_status,
+            case_type,
+            back_time,
+            back_count,
+            back_data
+            )VALUES (
+            #{id},
+            #{sourceCompany},
+            #{consumerName},
+            #{insuranceType},
+            #{insuranceContent},
+            #{province},
+            #{city},
+            #{area},
+            #{receiveTime},
+            #{receiveCompany},
+            #{allotTime},
+            #{allotEmployee},
+            #{maxTime},
+            #{caseStatus},
+            #{caseType},
+            #{backTime},
+            #{backCount},
+            #{backData}
+            )
+
+    </insert>
+    <select id="selectAll" resultType="com.zytc.demo.entity.Case">
+
+        select <include refid="case_Column_List"/> from zytc_case
+
+    </select>
+
+    <select id="sumData" resultType="Integer">
+
+        select count(id) from zytc_case
+
+    </select>
+
+</mapper>

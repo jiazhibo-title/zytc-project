@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zytc.demo.mapper.CityMapper">
+
+    <sql id="province_Column_List">
+        id AS id,
+        provinceid AS provinceId,
+        province AS province
+    </sql>
+
+    <sql id="city_Column_List">
+        id AS id,
+        provinceid AS provinceId,
+        cityid AS cityId,
+        city AS city
+    </sql>
+
+    <sql id="area_Column_List">
+        id AS id,
+        cityid AS cityId,
+        area AS area,
+        areaid AS areaId
+    </sql>
+
+    <select id="queryProvince" resultType="com.zytc.demo.entity.Province">
+        select <include refid="province_Column_List"/> from provinces
+    </select>
+
+    <select id="queryCity" parameterType="String" resultType="com.zytc.demo.entity.City">
+        select <include refid="city_Column_List"/> from cities where provinceid = #{provinceId}
+    </select>
+
+    <select id="queryArea" parameterType="String" resultType="com.zytc.demo.entity.Area">
+        select <include refid="area_Column_List"/> from areas where cityid = #{cityId}
+    </select>
+
+</mapper>
